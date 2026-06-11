@@ -14,7 +14,7 @@ export const Default = (props: GridStatusGaugeProps) => {
 
   return (
     <div className={`container py-10 ${styles}`} id={id}>
-      <div className="flex flex-col items-center rounded-xl border p-10 shadow-sm">
+      <div className="flex flex-col items-center border p-10">
         {/* Title */}
         <h2 className="text-foreground mb-6 text-center text-3xl font-bold">
           {t('grid_conditions_status_title') || 'Grid Conditions'}
@@ -34,7 +34,7 @@ export const Default = (props: GridStatusGaugeProps) => {
                     transform: `rotate(${rotation}deg) translateY(-200%)`,
                   }}
                 >
-                  <div className="h-12 w-5 rounded-full bg-green-500" />
+                  <div className="bg-accent h-12 w-5" />
                 </div>
               );
             })}

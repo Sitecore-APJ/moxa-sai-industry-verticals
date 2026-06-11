@@ -3,7 +3,7 @@
 }
 
 .global-checkbox-element.global-checkbox-element.global-checkbox-element {
-  @apply bg-background border-foreground/40 checked:bg-accent checked:border-accent h-4 w-4 rounded-sm border-2 shadow-none focus-within:!outline-none;
+  @apply bg-background border-foreground/40 checked:bg-accent checked:border-accent h-4 w-4 border-2 shadow-none focus-within:!outline-none;
 }
 
 .global-radio-element.global-radio-element.global-radio-element {
@@ -19,7 +19,7 @@
 }
 
 .submit-button.submit-button.submit-button {
-  @apply rounded-none border-0 bg-transparent px-0 py-0 shadow-none;
-  @apply text-accent inline-flex items-center gap-2 text-base font-medium;
-  @apply cursor-pointer;
+  @apply border-0 bg-transparent px-0 py-0 shadow-none;
+  @apply text-accent hover:text-accent-dark inline-flex items-center gap-2 text-sm font-medium tracking-wide uppercase;
+  @apply cursor-pointer transition-colors;
 }

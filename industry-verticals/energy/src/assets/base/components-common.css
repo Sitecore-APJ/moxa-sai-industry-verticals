@@ -30,16 +30,27 @@
   @apply border-r;
 }
 
+/* Primary CTA – solid Moxa teal */
 .main-btn {
-  @apply bg-accent text-background hover:bg-accent/95 flex items-center justify-center rounded-md px-6 py-3 text-center text-lg font-semibold transition-all hover:shadow-md;
+  @apply bg-accent text-background hover:bg-accent-dark inline-flex items-center justify-center px-8 py-3 text-center text-sm font-medium tracking-wide uppercase transition-colors;
 
   &[disabled] {
     @apply pointer-events-none opacity-60;
   }
 }
 
+/* Secondary CTA – ghost outline on light backgrounds */
 .secondary-btn {
-  @apply bg-background text-foreground hover:bg-background/95 flex items-center justify-center rounded-md px-6 py-3 text-center text-lg font-semibold transition-all hover:shadow-md;
+  @apply border-accent text-accent hover:bg-accent inline-flex items-center justify-center border bg-transparent px-8 py-3 text-center text-sm font-medium tracking-wide uppercase transition-colors hover:text-white;
+
+  &[disabled] {
+    @apply pointer-events-none opacity-60;
+  }
+}
+
+/* Ghost CTA – for dark hero backgrounds */
+.ghost-btn {
+  @apply border-background text-background hover:bg-background/10 inline-flex items-center justify-center border bg-transparent px-8 py-3 text-center text-sm font-medium tracking-wide uppercase transition-colors;
 
   &[disabled] {
     @apply pointer-events-none opacity-60;
@@ -47,14 +58,14 @@
 }
 
 .outline-btn {
-  @apply border-border hover:bg-background-muted rounded-md border px-4 py-1.5 text-sm transition-colors;
+  @apply border-accent text-accent hover:bg-accent border px-5 py-2 text-sm font-medium tracking-wide uppercase transition-colors hover:text-white;
 }
 
 .simple-btn {
-  @apply bg-background-muted flex items-center gap-2 rounded-md border px-2 py-1 text-sm font-semibold shadow-sm transition-all;
+  @apply bg-background border-border flex items-center gap-2 border px-3 py-1.5 text-sm font-medium transition-colors;
 
   &:hover {
-    @apply shadow-md;
+    @apply border-accent text-accent;
   }
 
   &[disabled] {
@@ -66,18 +77,68 @@
   }
 
   &.inverted {
-    @apply bg-foreground text-background hover:bg-foreground/90;
+    @apply bg-hero text-background hover:bg-hero-dark border-hero;
   }
 }
 
 .info-card {
-  @apply bg-background space-y-4 rounded-lg border p-6 text-sm shadow-sm;
+  @apply bg-background space-y-4 border p-6 text-sm;
 
   .info-card-title {
     @apply text-foreground mb-6 flex items-center gap-2 text-base font-bold;
 
     svg {
-      @apply size-5;
+      @apply text-accent size-5;
+    }
+  }
+}
+
+/* Navigation */
+.navigation-item {
+  @apply text-foreground hover:text-accent text-base font-normal whitespace-nowrap transition-colors;
+}
+
+.navigation-item-primary {
+  @apply text-foreground hover:text-accent;
+}
+
+/* Hero blueprint grid overlay */
+.hero-banner {
+  @apply bg-hero text-background;
+
+  .hero-grid-overlay {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+}
+
+/* Header utility navigation (link-list with utility-nav style) */
+.component.header {
+  .link-list.utility-nav,
+  .link-list.list-horizontal.utility-nav {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply hidden;
+    }
+
+    ul {
+      @apply flex flex-row flex-nowrap items-center gap-0;
+    }
+
+    li:not(:last-child)::after {
+      content: '|';
+      @apply text-border mx-3 text-sm;
+    }
+
+    a {
+      @apply text-accent hover:text-accent-dark text-sm font-normal no-underline transition-colors hover:underline;
     }
   }
 }

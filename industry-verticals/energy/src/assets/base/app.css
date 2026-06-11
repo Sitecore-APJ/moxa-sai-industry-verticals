@@ -37,6 +37,16 @@ body {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+}
+
+/* Moxa-style utility navigation row above main header */
+#header > .link-list.utility-nav {
+  @apply border-border/60 bg-background order-first w-full border-b;
+
+  .component-content {
+    @apply container flex justify-end py-2;
+  }
 }
 
 .sc-content-sdk-placeholder-error {

@@ -19,53 +19,60 @@ export const Default = (props: HeaderProps): JSX.Element => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Close search when route changes
   useEffect(() => {
     setIsSearchOpen(false);
   }, [pathname, searchParams]);
 
   return (
-    <div className={`component header bg-background border-b ${styles}`} id={id}>
-      <div className="container flex items-center gap-4 py-4 lg:gap-6">
-        <div className="header-block *:shrink max-lg:w-full max-lg:justify-between lg:shrink-0">
+    <div
+      className={`component header bg-background border-border sticky top-0 z-50 border-b shadow-sm ${styles}`}
+      id={id}
+    >
+      <div className="container flex items-center gap-6 py-3 lg:py-4">
+        <div className="header-block shrink-0 max-lg:w-full max-lg:justify-between lg:min-w-0">
           <Placeholder name={`header-left-${DynamicPlaceholderId}`} rendering={props.rendering} />
         </div>
-        <div className="hidden! lg:flex! lg:shrink lg:basis-full">
+
+        <div className="hidden! min-w-0 flex-1 lg:flex! lg:justify-center">
           <Placeholder name={`header-nav-${DynamicPlaceholderId}`} rendering={props.rendering} />
         </div>
 
-        {/* Search Button */}
         <button
+          type="button"
           onClick={() => setIsSearchOpen(!isSearchOpen)}
-          className="text-gray-700 transition-colors hover:text-blue-600"
+          aria-label="Search"
+          className="bg-background-muted text-foreground hover:text-accent flex size-9 shrink-0 items-center justify-center transition-colors"
         >
-          <Search className="size-5" />
+          <Search className="size-4" />
         </button>
 
-        {/* Mobile Drawer Trigger */}
-        <div className="lg:hidden">
+        <div className="shrink-0 lg:hidden">
           <Drawer direction="left">
             <DrawerTrigger asChild>
               <button
                 type="button"
                 aria-label="Open menu"
-                className="text-foreground hover:text-foreground-light p-2 transition-colors"
+                className="text-foreground hover:text-accent p-2 transition-colors"
               >
-                <Menu className="h-6 w-6" />
+                <Menu className="size-6" />
               </button>
             </DrawerTrigger>
 
-            <DrawerContent className="bg-background-accent w-xl! max-w-full! p-5">
+            <DrawerContent className="bg-background w-xl! max-w-full! p-0">
               <div className="flex h-full flex-col">
-                <div className="mb-14 flex items-center justify-between self-end">
+                <div className="border-border flex items-center justify-between border-b px-6 py-4">
+                  <Placeholder
+                    name={`header-left-${DynamicPlaceholderId}`}
+                    rendering={props.rendering}
+                  />
                   <DrawerClose asChild>
-                    <button type="button" aria-label="Close menu">
-                      <X className="h-5 w-5" />
+                    <button type="button" aria-label="Close menu" className="p-1">
+                      <X className="size-5" />
                     </button>
                   </DrawerClose>
                 </div>
 
-                <div className="mb-6 flex flex-col gap-y-6 px-12">
+                <div className="flex flex-1 flex-col gap-y-4 overflow-y-auto px-6 py-6">
                   <Placeholder
                     name={`header-nav-${DynamicPlaceholderId}`}
                     rendering={props.rendering}
@@ -78,9 +85,9 @@ export const Default = (props: HeaderProps): JSX.Element => {
       </div>
 
       {isSearchOpen && (
-        <div className="border-border bg-background absolute top-full right-0 left-0 z-50 border-b shadow-lg">
-          <div className="mx-auto max-w-7xl px-4 py-4">
-            <div className="flex items-center gap-2">
+        <div className="border-border bg-background absolute top-full right-0 left-0 z-50 border-b shadow-md">
+          <div className="container py-4">
+            <div className="flex items-center gap-3">
               <PreviewSearch
                 rfkId={PREVIEW_WIDGET_ID}
                 isOpen={isSearchOpen}
@@ -88,8 +95,10 @@ export const Default = (props: HeaderProps): JSX.Element => {
               />
 
               <button
+                type="button"
                 onClick={() => setIsSearchOpen(false)}
-                className="text-foreground-muted hover:text-foreground p-3 transition-colors"
+                aria-label="Close search"
+                className="text-foreground-muted hover:text-foreground p-2 transition-colors"
               >
                 <X className="size-5" />
               </button>

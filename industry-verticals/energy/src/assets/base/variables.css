@@ -1,26 +1,32 @@
 @theme {
-  --color-foreground: #111828;
-  --color-foreground-light: #4a5565;
-  --color-foreground-muted: #384354;
-  --color-foreground-secondary: #99a1af;
+  /* Moxa brand palette */
+  --color-foreground: #333333;
+  --color-foreground-light: #666666;
+  --color-foreground-muted: #555555;
+  --color-foreground-secondary: #999999;
 
-  --color-background: #fff;
-  --color-background-accent: #dbf3f5;
+  --color-background: #ffffff;
+  --color-background-accent: #e8f5f3;
   --color-background-muted: #f5f5f5;
 
-  --color-accent: #3cbed1;
-  --color-accent-dark: #228091;
+  --color-accent: #009681;
+  --color-accent-dark: #007a69;
+  --color-accent-light: #00b39b;
 
-  --color-success: #2ec1ac;
+  --color-hero: #1a2b4a;
+  --color-hero-dark: #0f1d32;
+
+  --color-success: #009681;
   --color-warning: #f5a623;
-  --color-danger: #e7000b;
+  --color-danger: #d32f2f;
 
-  --color-border: #e5e5e5;
+  --color-border: #e0e0e0;
 
-  --font-heading: 'Open Sans', sans-serif;
-  --font-body: 'Open Sans', sans-serif;
+  --font-heading: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-  --radius-base: 0.5rem;
+  /* Moxa uses sharp corners throughout */
+  --radius-base: 0;
 
   /*
   This does not show in the theme editor

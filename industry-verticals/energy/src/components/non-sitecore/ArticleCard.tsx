@@ -22,21 +22,24 @@ const ArticleCard = ({ fields, id, url }: ArticlesProps) => {
   const { page } = useSitecore();
   const isPageEditing = page.mode.isEditing;
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-lg shadow-md" key={id}>
-      <div className="bg-background-accent relative h-72">
-        <ContentSdkImage field={fields?.Image} className="h-full w-full object-cover" />
+    <div className="group flex h-full flex-col overflow-hidden border" key={id}>
+      <div className="bg-background-muted relative h-56 overflow-hidden">
+        <ContentSdkImage
+          field={fields?.Image}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+        />
       </div>
 
-      <div className="flex grow flex-col p-6 pt-8">
+      <div className="flex grow flex-col p-6">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
           {fields.Category.fields.Category?.value && (
-            <span className="bg-background-muted text-foreground-muted rounded-md border px-2 py-1 text-xs font-semibold">
+            <span className="bg-background-accent text-accent border-accent border px-2 py-0.5 text-xs font-semibold tracking-wide uppercase">
               <ContentSdkText field={fields.Category.fields.Category} />
             </span>
           )}
           <div className="flex items-center gap-2 text-sm">
             {(fields?.PublishedDate?.value || isPageEditing) && (
-              <div className="flex items-center gap-1">
+              <div className="text-foreground-secondary flex items-center gap-1">
                 <Calendar className="size-3" />
                 <DateField
                   tag="p"
@@ -49,7 +52,7 @@ const ArticleCard = ({ fields, id, url }: ArticlesProps) => {
           </div>
         </div>
         {(fields?.Title?.value || isPageEditing) && (
-          <div className="mb-3 font-bold wrap-break-word hyphens-auto">
+          <div className="mb-3 text-base leading-snug font-bold wrap-break-word hyphens-auto">
             <ContentSdkText field={fields?.Title} />
           </div>
         )}
@@ -60,18 +63,18 @@ const ArticleCard = ({ fields, id, url }: ArticlesProps) => {
         )}
         <div className="mt-auto flex items-center justify-between border-t pt-4">
           {(fields?.PublishedDate?.value || isPageEditing) && (
-            <div className="flex items-center gap-1 text-sm">
+            <div className="text-foreground-secondary flex items-center gap-1 text-sm">
               <User className="size-3" />
               <ContentSdkText field={fields?.Author?.fields?.AuthorName} tag="p" />
             </div>
           )}
           <Link
             href={url}
-            className="hover:text-accent flex items-center gap-2 text-sm font-medium transition-colors"
+            className="text-accent hover:text-accent-dark flex items-center gap-1 text-sm font-medium tracking-wide uppercase transition-colors"
             aria-label="Read full article"
           >
-            {t('read_more') || 'Read More'}
-            <ArrowRight className="h-4 w-4" />
+            {t('read_more') || 'Learn More'}
+            <ArrowRight className="size-4" />
           </Link>
         </div>
       </div>

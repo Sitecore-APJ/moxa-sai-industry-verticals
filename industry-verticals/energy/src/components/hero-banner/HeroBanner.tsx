@@ -41,48 +41,70 @@ export const Default = ({ params, fields }: HeroBannerProps) => {
   }
 
   return (
-    <div className={`component hero-banner relative flex items-center py-24 ${styles}`} id={id}>
-      {/* Background Media */}
-      <div className="absolute inset-0 z-1">
-        {!isPageEditing && fields?.Video?.value?.src ? (
-          <video
-            className="h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={fields.Image?.value?.src}
-          >
-            <source src={fields.Video?.value?.src} type="video/webm" />
-          </video>
-        ) : (
-          <ContentSdkImage field={fields.Image} className="h-full w-full object-cover" priority />
-        )}
-      </div>
-      {/* Gradient Overlay using primary color */}
-      <div className="from-accent-dark to-accent absolute inset-0 z-0 bg-linear-to-r"></div>
+    <div
+      className={`component hero-banner relative overflow-hidden py-16 lg:py-24 ${styles}`}
+      id={id}
+    >
+      {/* Blueprint grid overlay */}
+      <div className="hero-grid-overlay absolute inset-0 z-0" aria-hidden="true" />
 
-      {/* Content Container */}
-      <div className="relative z-3 container mx-auto flex flex-col items-center justify-center">
-        {/* Title - styled in accent/primary color */}
-        <h1 className={`${hasMedia ? 'text-accent' : 'text-background'} text-center`}>
-          <ContentSdkText field={fields.Title} />
-        </h1>
-
-        {/* Description/Tagline - white text */}
-        <div className="**:text-background mt-4 max-w-2xl text-xl **:text-center">
-          <ContentSdkRichText field={fields.Description} />
+      {/* Background media with dark overlay */}
+      {hasMedia && (
+        <div className="absolute inset-0 z-1">
+          {!isPageEditing && fields?.Video?.value?.src ? (
+            <video
+              className="h-full w-full object-cover opacity-30"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={fields.Image?.value?.src}
+            >
+              <source src={fields.Video?.value?.src} type="video/webm" />
+            </video>
+          ) : (
+            <ContentSdkImage
+              field={fields.Image}
+              className="h-full w-full object-cover opacity-20"
+              priority
+            />
+          )}
+          <div className="from-hero via-hero/90 to-hero/70 absolute inset-0 bg-linear-to-r" />
         </div>
+      )}
 
-        {/* CTA Buttons */}
-        {(fields?.CtaLink || fields?.SecondaryCtaLink) && (
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            {fields?.CtaLink && <Link field={fields.CtaLink} className="main-btn" />}
-            {fields?.SecondaryCtaLink && (
-              <Link field={fields.SecondaryCtaLink} className="secondary-btn" />
+      {/* Content */}
+      <div className="relative z-3 container mx-auto">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="space-y-6 text-left">
+            <h1 className="text-background text-4xl leading-tight font-bold lg:text-5xl">
+              <ContentSdkText field={fields.Title} />
+            </h1>
+
+            <div className="**:text-background/90 max-w-xl text-lg leading-relaxed **:text-left">
+              <ContentSdkRichText field={fields.Description} />
+            </div>
+
+            {(fields?.CtaLink || fields?.SecondaryCtaLink) && (
+              <div className="flex flex-wrap gap-4 pt-2">
+                {fields?.CtaLink && <Link field={fields.CtaLink} className="ghost-btn" />}
+                {fields?.SecondaryCtaLink && (
+                  <Link field={fields.SecondaryCtaLink} className="main-btn" />
+                )}
+              </div>
             )}
           </div>
-        )}
+
+          {hasMedia && (
+            <div className="relative hidden lg:block">
+              <ContentSdkImage
+                field={fields.Image}
+                className="relative z-1 h-auto w-full object-contain"
+                priority
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

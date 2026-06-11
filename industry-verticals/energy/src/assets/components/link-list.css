@@ -5,11 +5,15 @@
   h4,
   h5,
   h6 {
-    @apply text-accent mb-4.5 text-lg;
+    @apply text-foreground mb-4 text-lg font-bold;
   }
 
   ul {
     @apply flex flex-row flex-wrap gap-4;
+  }
+
+  a {
+    @apply text-foreground-light hover:text-accent transition-colors;
   }
 
   a:hover {
@@ -20,12 +24,37 @@
 /* list vertical */
 .link-list.list-vertical {
   ul {
-    @apply flex-col;
+    @apply flex-col gap-2;
   }
 }
 
 .link-list.hide-title {
   h3 {
     @apply hidden;
+  }
+}
+
+/* Moxa utility navigation style */
+.link-list.utility-nav {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply hidden;
+  }
+
+  ul {
+    @apply flex-row flex-nowrap items-center gap-0;
+  }
+
+  li:not(:last-child)::after {
+    content: '|';
+    @apply text-border mx-3 text-sm;
+  }
+
+  a {
+    @apply text-accent hover:text-accent-dark text-sm no-underline hover:underline;
   }
 }
